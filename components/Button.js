@@ -1,22 +1,23 @@
-import { Component, cloneElement } from 'react';
-import PropTypes from 'prop-types';
-import omit from 'lodash.omit';
+import { Component, cloneElement } from "react";
+import PropTypes from "prop-types";
+import omit from "lodash.omit";
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class extends Component {
   static propTypes = {
     type: PropTypes.string.isRequired,
-    size: PropTypes.oneOf(['large', 'small']).isRequired,
+    size: PropTypes.oneOf(["large", "small"]).isRequired,
     htmlType: PropTypes.string,
     disabled: PropTypes.bool,
     icon: PropTypes.element.isRequired,
     smallIconXoffset: PropTypes.number,
     text: PropTypes.string.isRequired,
     style: PropTypes.object,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
-    disabled: false
+    disabled: false,
   };
 
   render() {
@@ -28,12 +29,12 @@ export default class extends Component {
       smallIconXoffset,
       text,
       style,
-      onClick
+      onClick,
     } = this.props;
     const iconStyle =
-      size === 'small' && smallIconXoffset
+      size === "small" && smallIconXoffset
         ? {
-            transform: `translate(${smallIconXoffset})`
+            transform: `translate(${smallIconXoffset})`,
           }
         : {};
     const icon = cloneElement(this.props.icon, iconStyle);
@@ -43,11 +44,11 @@ export default class extends Component {
         className={`${type} ${size}`}
         type={htmlType}
         disabled={disabled}
-        style={size === 'large' ? style : omit(style, 'width')}
+        style={size === "large" ? style : omit(style, "width")}
         onClick={onClick}
       >
         {icon}
-        {size === 'large' ? <span>{text}</span> : null}
+        {size === "large" ? <span>{text}</span> : null}
         <style jsx>{`
           button {
             display: flex;

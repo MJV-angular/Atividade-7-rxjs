@@ -24,7 +24,7 @@ const svgStyle = {
   dominantBaseline: 'central',
   textAnchor: 'middle',
   cursor: 'default',
-  userSelect: 'none'
+  userSelect: 'none',
 };
 
 const tooltipsContainerStyle = {

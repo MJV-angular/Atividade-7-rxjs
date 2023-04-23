@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import { getObservableFromCode } from '../lib/observable-from-code';
-import RxViz from '../components/RxViz';
+import { Component } from "react";
+import { getObservableFromCode } from "../lib/observable-from-code";
+import RxViz from "../components/RxViz";
 
 export default class extends Component {
   constructor() {
@@ -8,16 +8,16 @@ export default class extends Component {
 
     this.state = {
       timeWindow: null,
-      observable$: null
+      observable$: null,
     };
   }
 
   componentDidMount() {
-    window.addEventListener('message', this.handleMessageFromOutput);
+    window.addEventListener("message", this.handleMessageFromOutput);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('message', this.handleMessageFromOutput);
+    window.removeEventListener("message", this.handleMessageFromOutput);
   }
 
   sendMessageToOutput(data) {
@@ -31,27 +31,27 @@ export default class extends Component {
     this.clearContainer();
 
     switch (data.type) {
-      case 'clear':
+      case "clear":
         this.setState({
           timeWindow: null,
-          observable$: null
+          observable$: null,
         });
         break;
 
-      case 'visualize': {
+      case "visualize": {
         const { timeWindow, code } = data.vizParams;
         const { error, observable$ } = getObservableFromCode(code, {
-          output: this.container
+          output: this.container,
         });
 
         if (error) {
-          this.sendMessageToOutput({ type: 'error', error });
+          this.sendMessageToOutput({ type: "error", error });
         } else {
-          this.sendMessageToOutput({ type: 'success' });
+          this.sendMessageToOutput({ type: "success" });
 
           this.setState({
             timeWindow,
-            observable$
+            observable$,
           });
         }
         break;
@@ -60,24 +60,24 @@ export default class extends Component {
   };
 
   clearContainer() {
-    Array.from(this.container.children).forEach(child => {
+    Array.from(this.container.children).forEach((child) => {
       if (child !== this.vizContainer) {
         child.remove();
       }
     });
   }
 
-  onSvgStable = svg => {
-    this.sendMessageToOutput({ type: 'svg-ready', svg });
+  onSvgStable = (svg) => {
+    this.sendMessageToOutput({ type: "svg-ready", svg });
   };
 
-  storeContainer = container => {
+  storeContainer = (container) => {
     if (container !== null) {
       this.container = container;
     }
   };
 
-  storeVizContainer = vizContainer => {
+  storeVizContainer = (vizContainer) => {
     if (vizContainer !== null) {
       this.vizContainer = vizContainer;
     }

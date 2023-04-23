@@ -1,74 +1,35 @@
-# <a href='https://rxviz.com'><img src='https://user-images.githubusercontent.com/259753/26937967-b6bd7262-4c27-11e7-97f3-29878d7ec468.png' height='60' alt='RxViz logo'></a>
+# RxJS Devschool
 
-- [Project Status](#project-status)
-- [Description](#description)
-- [Examples](#examples)
-  - [Basic Interval](#basic-interval)
-  - [Random error](#random-error)
-  - [Higher order Observable](#higher-order-observable)
-  - [Pause and resume](#pause-and-resume)
-- [How does it work?](#how-does-it-work)
-  - [How about higher order Observables?](#how-about-higher-order-observables)
-- [Thanks](#thanks)
-- [Running locally](#running-locally)
+Este é um projeto para facilitar o aprendizado de RxJS de forma visual, utilizando como base o código fonte do [RxViz](https://rxviz.com/).
 
-## Project Status
+Esse projeto é feito em React mas não afetará nada os nossos exemplos, o foco será aprender somente a trabalhar com Observables, e atualmente o RxViz possui a melhor visualização para isso.
 
-Looking for maintainers!
+# Instalação
 
-Unfortunately, I don't have the time to maintain this project anymore. If you are interested to help, please reach out to me on Twitter [@moroshko](https://twitter.com/moroshko).
+Rodar `npm install`
 
-## Description
+# Rodar projeto
 
-RxViz simply visualizes a given Observable. Your JavaScript code will be evaluated, and, if the last expression is an Observable, a nice animated visualization will appear.
+Rodar `npm run dev` e acessar http://localhost:3000
 
-You can also:
+# Modificar exemplo
 
-- Control the speed of the animation by modifying the **Time window** input.
-- Copy the resulting SVG to include in your next Rx presentation.
-- Share the visualization with your friends.
+O exemplo a ser editado é o pages/index.tsx, que é o único arquivo Typescript do projeto. 
 
-## Examples
 
-### Basic interval
+# Exercícios
 
-[![rxviz-basic-interval](https://user-images.githubusercontent.com/259753/26908333-f27e17f8-4bae-11e7-87b8-3851778e9cf6.gif)](https://rxviz.com/examples/basic-interval)
-
-### Random error
-
-[![rxviz-random-error](https://user-images.githubusercontent.com/259753/27258497-e7eeb36a-53b0-11e7-8399-8e3cea31f7e6.gif)](https://rxviz.com/examples/random-error)
-
-### Higher order Observable
-
-[![rxviz-higher-order-observable](https://user-images.githubusercontent.com/259753/26908347-fefb6fa8-4bae-11e7-8d06-0658e3cf1e17.gif)](https://rxviz.com/examples/higher-order-observable)
-
-### Pause and resume
-
-[![rxviz-pause-and-resume](https://user-images.githubusercontent.com/259753/26908310-bb0f8540-4bae-11e7-9bb7-9520ec567fdf.gif)](https://rxviz.com/examples/pause-and-resume)
-
-## How does it work?
-
-RxViz treats the evaluated Observable as a black box. We rely only on the fact that Observable emits values over time. **RxViz doesn't rely on the internals of RxJS.** This will allow us to visualize [TC39 Observables](https://github.com/tc39/proposal-observable) in the future.
-
-Technically, we subscribe to the given Observable, and, once a value is observed, we simply add it to the visualization. It's that simple!
-
-### How about higher order Observables?
-
-No different. Since a higher order Observable is simply an Observable whose values are Observables themselves, we just repeat the process recursively.
-
-When an Observable value is seen, we subscribe to it. At this point, we create a new "branch" in the visualization.
-
-## Thanks
-
-- [Vedran Arnautović](https://twitter.com/vedranio) for designing [rxviz.com](https://rxviz.com)
-- [Yuki Izumi](https://github.com/kivikakk) for always being helpful with random technical questions
-- [zeit.co](https://zeit.co) for outstanding developer experience with [next.js](https://github.com/zeit/next.js) and [domains](https://zeit.co/domains)
-- [André Staltz](https://twitter.com/andrestaltz) for creating [rxmarbles.com](http://rxmarbles.com) and [awesome RxJS courses on egghead.io](https://egghead.io/courses#technology-rx)
-- [Canny](https://canny.io) for collecting [your feedback](https://rxviz.com/feedback)
-
-## Running locally
-
-```bash
-npm install
-npm run dev
-```
+1. Faça um observable que transforme os valores de interval$ em um valor constante (mapTo)
+2. Faça um observable que transforme os valores de interval$ em um valor calculado (map)
+3. Faça um observable que emita a soma dos valores emitidos pelo interval$ toda vez que ele emitir um valor (scan)
+4. Faça um observable que sempre que se fazer um click$, ele dispare uma requisição (simulateRequest) e emita o resultado no mesmo observable (mergeMap)
+5. Faça um observable que sempre que se um fazer click$, ele  dispare uma requisição (simulateRequest) e emita o resultado no mesmo observable, mas se for clickado uma outra vez antes da requisição terminar, ele cancele a requisição anterior e passe a escutar somente o resultado da requisição mais recente (switchMap)
+6. Faça um observable que sempre que se um fazer click$, ele  dispare uma requisição (simulateRequest) e emita o resultado no mesmo observable, mas se for clickado mais vezes antes da requisição terminar, ele ignore os cliques até que a requisição seja terminada (exhaustMap)
+7. Faça um observable que emita somente quando o usuário pressionar a key$ de "enter". (filter)
+8. Faça um observable que emita o valor total do input de texto somente quando o usuário parar de digitar por mais de 300 milisegundos (debounceTime)
+9. Usando o observable do exercício 8, Simule uma situação de "pesquisa", ou seja, crie um novo observable que dispara uma requisição ao receber esse valor do input, e considera somente a última requisição caso seja emitido outro valor de input. (switchMap)
+10. Faça com que o observable de key$ não emita valores repetidos em sequência (distinctUntilChanged)
+11. Faça um observable que combine os últimos valores emitidos pelo interval$, click$ e input$ e emita sua combinação como uma tupla (combineLatest)
+12. Faça um observable que periodicamente (interval$) emita o último valor digitado no input (withLatestFrom + map)
+13. Faça um observable que ao pressionar o mouse (mouseDown), comece a emitir os valores de mouseMove$ e para de emitir quando o mouse levantar (mouseUp), mas sem completar o observable principal.
+"# Atividade-7-rxjs" 

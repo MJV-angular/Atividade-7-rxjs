@@ -1,10 +1,10 @@
-import { Component } from 'react';
-import isUndefined from 'lodash.isundefined';
+import { Component } from "react";
+import isUndefined from "lodash.isundefined";
 
 const divStyle = {
   width: 0,
   height: 0,
-  overflow: 'hidden'
+  overflow: "hidden",
 };
 
 export default class MeasureSvgElements extends Component {
@@ -12,7 +12,7 @@ export default class MeasureSvgElements extends Component {
 
   prevDimensions = null;
 
-  storeSvgReference = svg => {
+  storeSvgReference = (svg) => {
     if (svg !== null) {
       this.svg = svg;
     }
@@ -45,7 +45,7 @@ export default class MeasureSvgElements extends Component {
 
     const childElements = Array.from(this.svg.children);
     const dimensions = childElements
-      .map(element => element.getBoundingClientRect())
+      .map((element) => element.getBoundingClientRect())
       .map(({ width, height }) => ({ width, height }));
 
     if (!this.dimensionsChanged(dimensions)) {

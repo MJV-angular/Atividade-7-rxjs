@@ -40,7 +40,7 @@ export default {
     top: 0
   },
   arrowUp: {
-    borderBottomColor: '#a6adb9',
+    borderBottomColor: 'red',
     borderWidth: '0px 0.8ex 1.2ex 0.8ex',
     margin: '-0.3ex 0px 0px -0.86ex'
   },

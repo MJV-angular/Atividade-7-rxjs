@@ -1,13 +1,13 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import color from 'color';
-import ObservableName from './ObservableName';
-import ObservableAxis from './ObservableAxis';
-import ObservableAxisArrow from './ObservableAxisArrow';
-import ObservableProgress from './ObservableProgress';
-import ObservableError from './ObservableError';
-import ObservableCompleted from './ObservableCompleted';
-import ObservableValues from './ObservableValues';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import color from "color";
+import ObservableName from "./ObservableName";
+import ObservableAxis from "./ObservableAxis";
+import ObservableAxisArrow from "./ObservableAxisArrow";
+import ObservableProgress from "./ObservableProgress";
+import ObservableError from "./ObservableError";
+import ObservableCompleted from "./ObservableCompleted";
+import ObservableValues from "./ObservableValues";
 
 const axisStrokeWidth = 2;
 
@@ -17,7 +17,7 @@ export default class Observable extends Component {
     name: PropTypes.shape({
       text: PropTypes.string.isRequired,
       width: PropTypes.number.isRequired,
-      style: PropTypes.object
+      style: PropTypes.object,
     }),
     translateY: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
@@ -36,7 +36,7 @@ export default class Observable extends Component {
     onErrorMouseEnter: PropTypes.func.isRequired,
     onErrorMouseLeave: PropTypes.func.isRequired,
     onValueMouseEnter: PropTypes.func.isRequired,
-    onValueMouseLeave: PropTypes.func.isRequired
+    onValueMouseLeave: PropTypes.func.isRequired,
   };
 
   renderName() {
@@ -85,7 +85,7 @@ export default class Observable extends Component {
       shouldRenderAxis,
       axisWidth,
       mainColor,
-      arrowWidth
+      arrowWidth,
     } = this.props;
 
     return (
@@ -104,14 +104,14 @@ export default class Observable extends Component {
     return animate
       ? {
           opacity: 0,
-          transition: 'opacity .5s ease-in-out'
+          transition: "opacity .5s ease-in-out",
         }
       : {
-          opacity: 1
+          opacity: 1,
         };
   };
 
-  animate = element => {
+  animate = (element) => {
     setTimeout(() => {
       element.style.opacity = 1;
     }, 50); // If it gets smaller, the animation doesn't always work.
@@ -136,7 +136,7 @@ export default class Observable extends Component {
       shapeOuterSize,
       scale,
       observable,
-      animate
+      animate,
     } = this.props;
     const { error } = observable;
 
@@ -162,7 +162,7 @@ export default class Observable extends Component {
       shapeOuterSize,
       scale,
       observable,
-      animate
+      animate,
     } = this.props;
     const { completed } = observable;
 
@@ -191,7 +191,7 @@ export default class Observable extends Component {
       animate,
       allTooltips,
       onValueMouseEnter,
-      onValueMouseLeave
+      onValueMouseLeave,
     } = this.props;
     const { values } = observable;
 

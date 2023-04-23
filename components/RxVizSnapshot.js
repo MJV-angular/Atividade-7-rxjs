@@ -17,7 +17,7 @@ const defaultShapeSize = 30;
 const defaultTooltipTextStyle = {
   fontSize: 12,
   fontFamily: 'Arial, sans-serif',
-  fill: '#fff'
+  fill: 'red'
 };
 
 export default class RxVizSnapshot extends Component {

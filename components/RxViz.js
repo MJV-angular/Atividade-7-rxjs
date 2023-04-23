@@ -1,19 +1,19 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import Measure from 'react-measure';
-import { Observable } from 'rxjs';
-import isFunction from 'lodash.isfunction';
-import RxVizSnapshot from './RxVizSnapshot';
-import { isTimeout, updateData } from '../lib/data-parser';
-import { getEmptyObservableData, getDataStream } from '../lib/data-stream';
-import { defaultRenderer } from '../lib/renderers';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import Measure from "react-measure";
+import { Observable } from "rxjs";
+import isFunction from "lodash.isfunction";
+import RxVizSnapshot from "./RxVizSnapshot";
+import { isTimeout, updateData } from "../lib/data-parser";
+import { getEmptyObservableData, getDataStream } from "../lib/data-stream";
+import { defaultRenderer } from "../lib/renderers";
 
 export default class RxViz extends Component {
   static propTypes = {
     name: PropTypes.shape({
       text: PropTypes.string.isRequired,
       width: PropTypes.number.isRequired,
-      style: PropTypes.object
+      style: PropTypes.object,
     }),
     height: PropTypes.number,
     timeWindow: PropTypes.number.isRequired,
@@ -22,18 +22,18 @@ export default class RxViz extends Component {
     renderer: PropTypes.func,
     inheritMainColor: PropTypes.bool,
     mergeThreshold: PropTypes.number,
-    onSvgStable: PropTypes.func
+    onSvgStable: PropTypes.func,
   };
 
   static defaultProps = {
     renderer: defaultRenderer,
-    mergeThreshold: 100
+    mergeThreshold: 100,
   };
 
   state = {
     width: null,
     timeProgressed: 0,
-    data: getEmptyObservableData()
+    data: getEmptyObservableData(),
   };
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +43,7 @@ export default class RxViz extends Component {
     ) {
       this.setState({
         timeProgressed: 0,
-        data: getEmptyObservableData()
+        data: getEmptyObservableData(),
       });
 
       this.stopAnimation();
@@ -81,15 +81,15 @@ export default class RxViz extends Component {
       ({ value, path }) => {
         if (isTimeout(value)) {
           this.setState({
-            timeProgressed: undefined
+            timeProgressed: undefined,
           });
           // Make sure that `this.animationStep` is not called again.
           // Otherwise, it would have changed `timeProgressed`.
           cancelAnimationFrame(this.requestId);
           this.onSvgStable();
         } else {
-          this.setState(state => ({
-            data: updateData(state.data, path, value)
+          this.setState((state) => ({
+            data: updateData(state.data, path, value),
           }));
         }
       },
@@ -110,9 +110,9 @@ export default class RxViz extends Component {
     this.requestId = requestAnimationFrame(this.animationStep);
   }
 
-  animationStep = timestamp => {
+  animationStep = (timestamp) => {
     this.setState({
-      timeProgressed: timestamp - this.subscriptionTime
+      timeProgressed: timestamp - this.subscriptionTime,
     });
 
     this.requestId = requestAnimationFrame(this.animationStep);
@@ -125,11 +125,11 @@ export default class RxViz extends Component {
 
   onResize = ({ bounds }) => {
     this.setState({
-      width: bounds.width
+      width: bounds.width,
     });
   };
 
-  onSvgRender = svg => {
+  onSvgRender = (svg) => {
     this.svg = svg;
   };
 
@@ -141,7 +141,7 @@ export default class RxViz extends Component {
       shapeSize,
       renderer,
       inheritMainColor,
-      mergeThreshold
+      mergeThreshold,
     } = this.props;
     const { width, timeProgressed, data } = this.state;
 

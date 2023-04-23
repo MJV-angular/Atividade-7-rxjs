@@ -1,8 +1,8 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import isPlainObject from 'lodash.isplainobject';
-import areObjectsSame from '../lib/are-objects-same';
-import { areScalesSame } from '../lib/d3-helpers';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import isPlainObject from "lodash.isplainobject";
+import areObjectsSame from "../lib/are-objects-same";
+import { areScalesSame } from "../lib/d3-helpers";
 
 const completedStrokeWidth = 2;
 
@@ -14,7 +14,7 @@ export default class ObservableCompleted extends Component {
     shapeOuterSize: PropTypes.number.isRequired,
     scale: PropTypes.func.isRequired,
     style: PropTypes.object.isRequired,
-    onRender: PropTypes.func
+    onRender: PropTypes.func,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -24,7 +24,7 @@ export default class ObservableCompleted extends Component {
       mainColor: this.props.mainColor,
       shapeOuterSize: this.props.shapeOuterSize,
       style: this.props.style,
-      onRender: this.props.onRender
+      onRender: this.props.onRender,
     };
     const next = {
       completed: nextProps.completed,
@@ -32,16 +32,16 @@ export default class ObservableCompleted extends Component {
       mainColor: nextProps.mainColor,
       shapeOuterSize: nextProps.shapeOuterSize,
       style: nextProps.style,
-      onRender: nextProps.onRender
+      onRender: nextProps.onRender,
     };
 
     return (
-      !areObjectsSame(curr, next, ['completed', 'style']) ||
+      !areObjectsSame(curr, next, ["completed", "style"]) ||
       !areScalesSame(this.props.scale, nextProps.scale)
     );
   }
 
-  maybeCallOnRender = container => {
+  maybeCallOnRender = (container) => {
     const { onRender } = this.props;
 
     if (container !== null && onRender) {
@@ -52,7 +52,7 @@ export default class ObservableCompleted extends Component {
   render() {
     const { completed } = this.props;
 
-    if (!isPlainObject(completed) || typeof completed.time !== 'number') {
+    if (!isPlainObject(completed) || typeof completed.time !== "number") {
       return null;
     }
 
@@ -60,7 +60,7 @@ export default class ObservableCompleted extends Component {
     const { time, lastValueBeforeCompletedTime } = completed;
     const x = scale(time);
     const lineHeight =
-      typeof lastValueBeforeCompletedTime === 'number' &&
+      typeof lastValueBeforeCompletedTime === "number" &&
       scale(lastValueBeforeCompletedTime) + shapeOuterSize / 2 >= x
         ? 1.5 * shapeOuterSize
         : shapeOuterSize;

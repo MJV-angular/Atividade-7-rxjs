@@ -1,5 +1,5 @@
 {
-  "name": "RxViz",
+  "name": "rxviz",
   "version": "1.0.0",
   "description": "Animated playground for Rx Observables",
   "repository": {
@@ -14,8 +14,7 @@
     "lint": "eslint components css lib pages ./*.js",
     "test": "jest",
     "coverage": "jest --coverage",
-    "prettier": "prettier --single-quote --write \"components/**/*.js\" \"css/**/*.js\" \"lib/**/*.js\" \"pages/**/*.js\" \"./*.js\"",
-    "precommit": "lint-staged"
+    "prettier": "prettier --single-quote --write \"components/**/*.js\" \"css/**/*.js\" \"lib/**/*.js\" \"pages/**/*.js\" \"./*.js\""
   },
   "dependencies": {
     "codemirror": "^5.56.0",
@@ -34,6 +33,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.set": "^4.3.2",
     "next": "^9.5.1",
+    "node": "^16.20.0",
     "prop-types": "^15.5.10",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -44,15 +44,18 @@
     "tinyqueue": "^1.2.2"
   },
   "devDependencies": {
+    "@types/node": "^18.0.5",
+    "@types/react": "^18.0.15",
     "babel-eslint": "^8.2.5",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.1.0",
     "husky": "^0.13.4",
     "jest": "^20.0.4",
-    "lint-staged": "^3.6.1",
     "lodash.sortby": "^4.7.0",
     "lolex": "^1.6.0",
-    "prettier": "^1.13.7"
+    "nvm": "^0.0.4",
+    "prettier": "^1.13.7",
+    "typescript": "^4.7.4"
   },
   "lint-staged": {
     "*.js": [
@@ -75,5 +78,8 @@
     "react",
     "react-component"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  }
 }
